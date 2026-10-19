@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Machine Learning - Tugas Pertemuan 4</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f7f4fc; margin: 0; padding: 40px; display: flex; justify-content: center; }
+        .card { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); width: 100%; max-width: 550px; }
+        h2 { color: #512da8; margin-top: 0; text-align: center; }
+        p.subtitle { text-align: center; color: #666; font-size: 14px; margin-bottom: 25px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: 600; color: #333; }
+        input { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; }
+        button { background-color: #673ab7; color: white; border: none; padding: 12px; width: 100%; border-radius: 6px; font-size: 16px; cursor: pointer; font-weight: bold; margin-top: 10px; }
+        button:hover { background-color: #512da8; }
+        .result { margin-top: 20px; padding: 15px; border-radius: 6px; background-color: #ede7f6; color: #4527a0; font-weight: bold; display: none; }
+        .result ul { margin: 5px 0 0 20px; padding: 0; font-weight: normal; }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h2>Simulasi Prediksi Machine Learning</h2>
+        <p class="subtitle">Materi: Introduction to Machine Learning (Taniza Tajuddin)</p>
+        
+        <div class="form-group">
+            <label for="luasTanah">Luas Bangunan/Tanah (m²):</label>
+            <input type="number" id="luasTanah" value="120" min="20" max="1000">
+        </div>
+
+        <div class="form-group">
+            <label for="jumlahKamar">Jumlah Kamar Tidur:</label>
+            <input type="number" id="jumlahKamar" value="3" min="1" max="10">
+        </div>
+
+        <button onclick="jalankanModelML()">Jalankan Prediksi Model</button>
+
+        <div id="hasil" class="result"></div>
+    </div>
+
+    <script>
+        function jalankanModelML() {
+            let luas = parseFloat(document.getElementById('luasTanah').value);
+            let kamar = parseInt(document.getElementById('jumlahKamar').value);
+            let hasilDiv = document.getElementById('hasil');
+
+            if (isNaN(luas) || isNaN(kamar) || luas <= 0 || kamar <= 0) {
+                hasilDiv.style.display = 'block';
+                hasilDiv.style.backgroundColor = '#ffebee';
+                hasilDiv.style.color = '#c62828';
+                hasilDiv.innerText = 'Mohon masukkan angka parameter yang valid!';
+                return;
+            }
+
+            // Simulasi bobot regresi sederhana dari model Machine Learning
+            // Harga dasar = 300 juta + (luas * 5 juta) + (kamar * 50 juta)
+            let estimasiHarga = 300 + (luas * 4.5) + (kamar * 45);
+
+            hasilDiv.style.display = 'block';
+            hasilDiv.style.backgroundColor = '#ede7f6';
+            hasilDiv.style.color = '#4527a0';
+            hasilDiv.innerHTML = `
+                Hasil Prediksi Model Machine Learning:
+                <ul>
+                    <li>Parameter Luas: ${luas} m²</li>
+                    <li>Parameter Kamar: ${kamar} Ruangan</li>
+                    <li><b>Estimasi Harga Properti: Rp ${estimasiHarga.toFixed(1)} Juta 🤖</b></li>
+                </ul>
+            `;
+        }
+    </script>
+
+</body>
+</html>
