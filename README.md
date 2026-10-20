@@ -1,3 +1,5 @@
+website: https://fitriawulandini-hash.github.io/Simulasi-model-prediksi-interaktif-berbasis-web/
+
 ## Pengantar Machine Learning
 
 Repositori ini berisi studi kasus materi Pertemuan 4 mengenai pengenalan dasar *Machine Learning* dan model prediktif untuk analisis data[cite: 1].
